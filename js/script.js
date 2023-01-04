@@ -5,17 +5,48 @@ const name = input.focus();
 //console.log(name);
 
 
-const roleInput = document.getElementById('other-job-role')
-roleInput.style.display = 'none';
+// Job Role section
 const roleSelect = document.getElementById('title')
+const roleInput = document.getElementById('other-job-role')
+ roleInput.style.display = 'none';
 
 
 
 roleSelect.addEventListener('change', (e) => {
       
-    const clicked = e.target;
+   //console.log(roleSelect.value)
+   
+   if(roleSelect.value === 'other') {
+    roleInput.style.display = 'block';
+      } else {
+        roleInput.style.display = 'none'
+      }
 
-    if (clicked.value === 'OTHER') {
-      roleInput.style.display = 'block';
-}
 });
+
+
+// T-shirt info section
+const colorSelect = document.getElementById('color');
+const designSelect = document.getElementById('design');
+const optionColor = document.getElementsByClassName('children')
+colorSelect.disabled = true;
+
+
+colorSelect.addEventListener('change', (e) => {
+    
+    colorSelect.disabled = false;
+
+    for (let i = optionColor; i < colorSelect.length; i++) {
+
+        const eTarget = event.target;
+        const dataTheme = document.querySelectorAll('data-theme')
+        if(eTarget === dataTheme) {
+         colorSelect[i].hidden = false;
+         colorSelect[i].setAttribute('selected', true);
+
+
+        } if (eTarget !== dataTheme)
+         colorSelect[i].hidden =  true;
+         colorSelect[i].setAttribute('selected',  false);
+}});
+
