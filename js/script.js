@@ -28,25 +28,28 @@ roleSelect.addEventListener('change', (e) => {
 // T-shirt info section
 const colorSelect = document.getElementById('color');
 const designSelect = document.getElementById('design');
-const optionColor = document.getElementsByClassName('children')
+const optionColor = document.querySelectorAll('[data-theme]');
 colorSelect.disabled = true;
 
 
-colorSelect.addEventListener('change', (e) => {
+designSelect.addEventListener('change', (e) => {
     
     colorSelect.disabled = false;
 
     for (let i = optionColor; i < colorSelect.length; i++) {
 
-        const eTarget = event.target;
-        const dataTheme = document.querySelectorAll('data-theme')
-        if(eTarget === dataTheme) {
-         colorSelect[i].hidden = false;
-         colorSelect[i].setAttribute('selected', true);
+        const eTarget = e.target;
+        const dataTheme = optionColor[i].getAttribute('[data-theme]');
+        if (eTarget === dataTheme) {
+         optionColor[i].hidden = false;
+         optionColor[i].setAttribute('selected', true);
+        }
 
 
-        } if (eTarget !== dataTheme)
-         colorSelect[i].hidden =  true;
-         colorSelect[i].setAttribute('selected',  false);
-}});
+         if (eTarget !== dataTheme) {
+         optionColor[i].hidden =  true;
+         optionColor[i].setAttribute('selected',  false);
+         }
+         console.log(eTarget);
 
+        }});
