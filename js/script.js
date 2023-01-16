@@ -53,3 +53,39 @@ designSelect.addEventListener('change', (e) => {
          console.log(eTarget);
 
         }});
+
+    
+        
+        //"Register for Activities" section
+        const activities = document.getElementById('activities');
+        const activitiesCost = document.getElementById('activities-cost')
+        let totalCost = 0;
+        
+        activities.addEventListener('change', (e) => {
+          let dataCost = e.target.getAttribute('[data-cost]');
+          dataCost+ 
+           console.log(dataCost);
+          
+           if (e.target.checked) {
+           dataCost += totalCost;
+        } else {
+          dataCost - totalCost
+        }
+
+        activitiesCost.innerHTML = `Total: $${totalCost}`
+        }); 
+        
+        //  "Payment Info" section
+        const paymentSelect = document.getElementById('payment');
+        const creditSection = document.getElementById('credit-card');
+        const paypalSection = document.getElementById('paypal');
+        const bitSection = document.getElementById('bitcoin');
+
+      paypalSection.hidden = true;
+       bitSection.hidden = true; 
+        
+        const selectedValue = paymentSelect.children.setAttribute('selected', true); 
+
+        paymentSelect.addEventListener('change', (e) => {
+          selectedValue.hidden = false; 
+        });
