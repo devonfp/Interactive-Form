@@ -31,8 +31,16 @@ Disables the "Color" menu by default.
 Also prevents users from selecting an invalid color for a particular theme. 
 Once a theme is selected, the "Color" menu is be enabled. Other color 
 options are displayed/hidden based on which theme the user has selected.*/
+
 const colorSelect = document.getElementById('color');
 const designSelect = document.getElementById('design');
+
+const selectJspuns = document.getElementById('jspuns-option')
+const selectHeartjs = document.getElementById('heartjs-option')
+
+const optionJspuns = document.querySelector('[data-theme="js puns"]');
+const optionHeartjs = document.querySelector('[data-theme="heart puns"]');
+
 const optionColor = document.querySelectorAll('[data-theme]');
 colorSelect.disabled = true;
 
@@ -41,7 +49,19 @@ designSelect.addEventListener('change', (e) => {
     
     colorSelect.disabled = false;
 
-    for (let i = optionColor; i < colorSelect.length; i++) {
+
+    if(selectedValue === selectJspuns) {
+    colorSelect.optionHeartjs.hidden = true;
+    }
+
+    if(selectedValue === selectHeartjs) {
+     colorSelect.optionJspuns.hidden = true;
+    }
+  
+  });
+
+
+    /*for (let i = optionColor; i < colorSelect.length; i++) {
 
         const eTarget = e.target;
         const dataTheme = optionColor[i].getAttribute('[data-theme]');
@@ -57,10 +77,14 @@ designSelect.addEventListener('change', (e) => {
          }
          console.log(eTarget);
 
-        }});
+        }});*/
 
     
         
+
+
+
+
         //Register for Activities" section
         // - Involves displaying the total cost of the activities selected by the user
         const activities = document.getElementById('activities');
@@ -68,14 +92,13 @@ designSelect.addEventListener('change', (e) => {
         let totalCost = 0;
         
         activities.addEventListener('change', (e) => {
-          let dataCost = e.target.getAttribute('[data-cost]');
-          dataCost+ 
+          let dataCost = e.target.getAttribute.parseInt(['data-cost']); 
            console.log(dataCost);
           
            if (e.target.checked) {
-           dataCost += totalCost;
+           totalCost += dataCost;
         } else {
-          dataCost - totalCost
+          totalCost - dataCost
         }
 
         activitiesCost.innerHTML = `Total: $${totalCost}`
