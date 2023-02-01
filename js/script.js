@@ -35,13 +35,11 @@ options are displayed/hidden based on which theme the user has selected.*/
 const colorSelect = document.getElementById('color');
 const designSelect = document.getElementById('design');
 
-const selectJspuns = document.getElementById('jspuns-option')
-const selectHeartjs = document.getElementById('heartjs-option')
+const colorOptions = document.querySelectorAll('[data-theme]');
 
-const optionJspuns = document.querySelector('[data-theme="js puns"]');
-const optionHeartjs = document.querySelector('[data-theme="heart puns"]');
+const jspunsOptions = colorOptions.getAttribute('js puns');
+const heartjsOptions = colorOptions.getAttribute('heart js');
 
-const optionColor = document.querySelectorAll('[data-theme]');
 colorSelect.disabled = true;
 
 
@@ -49,16 +47,17 @@ designSelect.addEventListener('change', (e) => {
     
     colorSelect.disabled = false;
 
-
-    if(selectedValue === selectJspuns) {
-    colorSelect.optionHeartjs.hidden = true;
+    for (let i = 0; i > colorOptions.length; i++) {
+    
+     if (e.target.value === jspunsOptions) {
+    jspunsOptions.hidden = true;
     }
 
-    if(selectedValue === selectHeartjs) {
-     colorSelect.optionJspuns.hidden = true;
+    if (e.target.value ===  heartjsOptions) {
+      heartjsOptions.hidden = true;
     }
   
-  });
+  }});
 
 
     /*for (let i = optionColor; i < colorSelect.length; i++) {
