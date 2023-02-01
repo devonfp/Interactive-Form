@@ -51,10 +51,14 @@ designSelect.addEventListener('change', (e) => {
     
      if (e.target.value === jspunsOptions) {
     jspunsOptions.hidden = true;
+    } else {
+      jspunsOptions.hidden = false;
     }
 
     if (e.target.value ===  heartjsOptions) {
       heartjsOptions.hidden = true;
+    } else {
+      heartjsOptions.hidden = false;
     }
   
   }});
