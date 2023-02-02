@@ -37,53 +37,35 @@ const designSelect = document.getElementById('design');
 
 const colorOptions = document.querySelectorAll('[data-theme]');
 
-const jspunsOptions = colorOptions.getAttribute('js puns');
-const heartjsOptions = colorOptions.getAttribute('heart js');
-
 colorSelect.disabled = true;
 
 
 designSelect.addEventListener('change', (e) => {
     
     colorSelect.disabled = false;
-
-    for (let i = 0; i > colorOptions.length; i++) {
-    
-     if (e.target.value === jspunsOptions) {
-    jspunsOptions.hidden = true;
-    } else {
-      jspunsOptions.hidden = false;
-    }
-
-    if (e.target.value ===  heartjsOptions) {
-      heartjsOptions.hidden = true;
-    } else {
-      heartjsOptions.hidden = false;
-    }
-  
-  }});
-
-
-    /*for (let i = optionColor; i < colorSelect.length; i++) {
-
-        const eTarget = e.target;
-        const dataTheme = optionColor[i].getAttribute('[data-theme]');
-        if (eTarget === dataTheme) {
-         optionColor[i].hidden = false;
-         optionColor[i].setAttribute('selected', true);
-        }
-
-
-         if (eTarget !== dataTheme) {
-         optionColor[i].hidden =  true;
-         optionColor[i].setAttribute('selected',  false);
-         }
-         console.log(eTarget);
-
-        }});*/
+    console.log(e.target.value);
 
     
-        
+    
+     if (e.target.value === 'js puns') {
+      for (let i = 0; i < colorOptions.length; i++) {
+     
+        const dataTheme = colorOptions[i].getAttribute(['data-theme']);
+
+          if (dataTheme !==  'js puns') {
+            colorOptions[i].hidden = true;
+          }
+
+
+
+               else if (e.target.value === 'heart js') {
+                for (let i = 0; i < colorOptions.length; i++) {
+                if (dataTheme !== 'heart js') {
+                 colorOptions[i].hidden = false;
+                 colorSelect.selected = false;
+              }
+            }
+          }}}});
 
 
 
@@ -101,7 +83,7 @@ designSelect.addEventListener('change', (e) => {
            if (e.target.checked) {
            totalCost += dataCost;
         } else {
-          totalCost - dataCost
+          totalCost -= dataCost;
         }
 
         activitiesCost.innerHTML = `Total: $${totalCost}`
