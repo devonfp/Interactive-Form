@@ -56,16 +56,34 @@ designSelect.addEventListener('change', (e) => {
             colorOptions[i].hidden = true;
           }
 
+          else if (e.target.value === 'js puns'); {
+          colorOptions[i].hidden = false;
+          }
+        }
+      } colorOptions[1]
+    
+
+      if (e.target.value === 'heart js') {
+        for (let i = 0; i < colorOptions.length; i++) {
+
+          const dataTheme = colorOptions[i].getAttribute(['data-theme']);
+          
+          if (dataTheme !== 'heart js') {
+            colorOptions[i].hidden = false;
+         }
+
+  }  colorOptions[3]
+}});
 
 
-               else if (e.target.value === 'heart js') {
+               /*else if (e.target.value === 'heart js') {
                 for (let i = 0; i < colorOptions.length; i++) {
                 if (dataTheme !== 'heart js') {
                  colorOptions[i].hidden = false;
                  colorSelect.selected = false;
               }
             }
-          }}}});
+          }}}});*/
 
 
 
