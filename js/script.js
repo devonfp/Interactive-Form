@@ -56,11 +56,11 @@ designSelect.addEventListener('change', (e) => {
             colorOptions[i].hidden = true;
           }
 
-          else if (e.target.value === 'js puns'); {
+          else if (e.target.value === 'js puns') {
           colorOptions[i].hidden = false;
           }
         }
-      } colorOptions[1]
+      } colorOptions[1].selected = true;
     
 
       if (e.target.value === 'heart js') {
@@ -68,11 +68,11 @@ designSelect.addEventListener('change', (e) => {
 
           const dataTheme = colorOptions[i].getAttribute(['data-theme']);
           
-          if (dataTheme !== 'heart js') {
-            colorOptions[i].hidden = false;
+          else if (dataTheme !== 'heart js') {
+            colorOptions[i].hidden = true;
          }
 
-  }  colorOptions[3]
+  }  colorOptions[3].selected = true;
 }});
 
 
