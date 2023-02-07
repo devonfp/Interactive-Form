@@ -67,9 +67,13 @@ designSelect.addEventListener('change', (e) => {
         for (let i = 0; i < colorOptions.length; i++) {
 
           const dataTheme = colorOptions[i].getAttribute(['data-theme']);
-          
-          else if (dataTheme !== 'heart js') {
+
+          if (dataTheme !== 'heart js') {
             colorOptions[i].hidden = true;
+          }
+          
+          else if (e.target.value === 'js puns') {
+            colorOptions[i].hidden = false;
          }
 
   }  colorOptions[3].selected = true;
