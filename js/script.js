@@ -72,7 +72,7 @@ designSelect.addEventListener('change', (e) => {
             colorOptions[i].hidden = true;
           }
           
-          else if (e.target.value === 'js puns') {
+          else if (e.target.value === 'heart js') {
             colorOptions[i].hidden = false;
          }
 
@@ -95,17 +95,17 @@ designSelect.addEventListener('change', (e) => {
         //Register for Activities" section
         // - Involves displaying the total cost of the activities selected by the user
         const activities = document.getElementById('activities');
-        const activitiesCost = document.getElementById('activities-cost')
+        const activitiesCost = document.getElementById('activities-cost');
         let totalCost = 0;
         
         activities.addEventListener('change', (e) => {
-          let dataCost = e.target.getAttribute.parseInt(['data-cost']); 
+          let dataCost = e.target.getAttribute.parseInt( ['data-cost'] ); 
            console.log(dataCost);
           
            if (e.target.checked) {
            totalCost += dataCost;
         } else {
-          totalCost -= dataCost;
+          totalCost += dataCost;
         }
 
         activitiesCost.innerHTML = `Total: $${totalCost}`
