@@ -99,13 +99,13 @@ designSelect.addEventListener('change', (e) => {
         let totalCost = 0;
         
         activities.addEventListener('change', (e) => {
-          let dataCost = e.target.getAttribute.parseInt( ['data-cost'] ); 
+          let dataCost = parseInt(e.target.getAttribute( 'data-cost' )); 
            console.log(dataCost);
           
            if (e.target.checked) {
            totalCost += dataCost;
         } else {
-          totalCost += dataCost;
+          totalCost -= dataCost;
         }
 
         activitiesCost.innerHTML = `Total: $${totalCost}`
@@ -125,11 +125,31 @@ designSelect.addEventListener('change', (e) => {
       paypalSection.hidden = true;
        bitSection.hidden = true; 
         
+      paymentSelect.firstChild.nextSibling.setAttribute('selected', true);
 
         paymentSelect.addEventListener('change', (e) => {
-          const selectedValue = e.target.setAttribute('selected', true); 
-          selectedValue.hidden = false;
-        });
+        
+        if (e.target.value === 'paypal') {
+         paypalSection.hidden = false;
+        } else {
+          paypalSection.hidden =  true;
+        }
+
+        if (e.target.value === 'bitcoin') {
+        bitSection.hidden = false;
+       } else {
+        bitSection.hidden = true;
+       }
+      
+      
+      });
+        
+        //creditSection.selected = true;
+
+
+          //const selectedValue = e.target.setAttribute('selected', true); 
+          //selectedValue.hidden = false;
+        //});
 
 
 
