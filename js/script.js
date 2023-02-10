@@ -125,7 +125,9 @@ designSelect.addEventListener('change', (e) => {
       paypalSection.hidden = true;
        bitSection.hidden = true; 
         
-      paymentSelect.firstChild.nextSibling.setAttribute('selected', true);
+     // Sets credit card as default dropdown option  
+     paymentSelect.value = 'credit-card'; 
+      
 
         paymentSelect.addEventListener('change', (e) => {
         
@@ -163,7 +165,57 @@ designSelect.addEventListener('change', (e) => {
         const cardInput = document.getElementById('cc-num');
         const zipInput = document.getElementById('zip');
         const cvvInput = document.getElementById('cvv');
-        const validInput = document.querySelector('.valid')
+
+
+        form.addEventListener('submit', (e) => {
+
+          // name validation
+            const nameValue = nameInput.value;
+            console.log("Name value is: ", `"${nameValue}"`);
+             
+            const nameIsValid = '^[A-Za-z][A-Za-z0-9_]{7,29}$'.test(nameValue);
+             
+            if (nameIsValid !== true) {
+              e.preventDefault;
+            }
+           
+           // email validation
+           const emailValue = emailInput.value;
+            const emailIsValid = '/^[^@]+@[^@.]+\.[a-z]+$/i'.test(emailValue);
+             
+           if (emailIsValid !== true) {
+             e.preventDefault;
+           }
+
+          // card validation
+           const cardValue = cardInput.value;
+            const cardIsValid ='| 222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}'.test(cardValue);
+             
+           if (cardIsValid !== true) {
+             e.preventDefault; 
+           }
+
+
+          // zip validation 
+          const zipValue = zipInput.value;
+          const zipIsValid = '^[0-9]{5}(?:-[0-9]{4})?$'.test(zipValue);
+             
+          if (zipIsValid !== true) {
+            e.preventDefault;
+          }
+
+
+          // cvv validation
+          const cvvValue = cvvInput.value;
+          const cvvIsValid = '^[0-9]{3, 4}$'.test(cvvValue);
+           
+         if (cvvIsValid !== true) {
+           e.preventDefault;
+         }
+        });
+
+
+       /* const validInput = document.querySelector('.valid')
         const notvalidInput = document.querySelector('.not-valid')
         
         form.addEventListener('submit', (e) => {
@@ -243,6 +295,7 @@ designSelect.addEventListener('change', (e) => {
         cvvInput.parentElement.lastElementChild.style.display = 'none';
        }
       });
+      */
 
 
       // Accessibility - notifies a user when an element is in focus, or if a field is invalid. 
