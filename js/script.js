@@ -80,14 +80,7 @@ designSelect.addEventListener('change', (e) => {
 }});
 
 
-               /*else if (e.target.value === 'heart js') {
-                for (let i = 0; i < colorOptions.length; i++) {
-                if (dataTheme !== 'heart js') {
-                 colorOptions[i].hidden = false;
-                 colorSelect.selected = false;
-              }
-            }
-          }}}});*/
+ 
 
 
 
@@ -142,16 +135,8 @@ designSelect.addEventListener('change', (e) => {
        } else {
         bitSection.hidden = true;
        }
-      
-      
       });
         
-        //creditSection.selected = true;
-
-
-          //const selectedValue = e.target.setAttribute('selected', true); 
-          //selectedValue.hidden = false;
-        //});
 
 
 
@@ -165,151 +150,119 @@ designSelect.addEventListener('change', (e) => {
         const cardInput = document.getElementById('cc-num');
         const zipInput = document.getElementById('zip');
         const cvvInput = document.getElementById('cvv');
-
+        
+        const inputField = document.querySelectorAll('input');
 
         form.addEventListener('submit', (e) => {
+          //e.preventDefault();
 
           // name validation
             const nameValue = nameInput.value;
-            console.log("Name value is: ", `"${nameValue}"`);
+            //console.log("Name value is: ", `"${nameValue}"`);
              
-            const nameIsValid = '^[A-Za-z][A-Za-z0-9_]{7,29}$'.test(nameValue);
+            const nameIsValid = /^[a-zA-Z ]{2,30}$/.test(nameValue);
+            // regex from: https://stackoverflow.com/a/14088769
              
-            if (nameIsValid !== true) {
-              e.preventDefault;
-            }
-           
+              if (nameIsValid !== true) {
+              e.preventDefault();
+              nameInput.parentElement.classList.add('not-valid');
+              nameInput.parentElement.classList.remove('valid');
+              } else {
+                nameInput.parentElement.classList.add('valid');
+                nameInput.parentElement.classList.remove('not-valid');
+                nameInput.parentElement.lastElementChild.hidden = true;
+
+              } 
+
+            
+
+      
            // email validation
            const emailValue = emailInput.value;
-            const emailIsValid = '/^[^@]+@[^@.]+\.[a-z]+$/i'.test(emailValue);
+           const emailIsValid = /^[^@]+@[^@.]+\.[a-z]+$/i.test(emailValue);
+            // regex from: 
              
-           if (emailIsValid !== true) {
-             e.preventDefault;
-           }
+            if (emailIsValid !== true) {
+            e.preventDefault();
+              emailInput.parentElement.classList.add('not-valid');
+              emailInput.parentElement.classList.remove('valid');
+
+            } else {
+              emailInput.parentElement.classList.add('valid');
+                emailInput.parentElement.classList.remove('not-valid');
+                emailInput.parentElement.lastElementChild.hidden = true;
+            }
+
+
+
 
           // card validation
-           const cardValue = cardInput.value;
-            const cardIsValid ='| 222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}'.test(cardValue);
-             
+           const cardValue = cardInput.value;             
+           const cardIsValid = /^(?:(4[0-9]{12}(?:[0-9]{3})?)|(5[1-5][0-9]{14})|(6(?:011|5[0-9]{2})[0-9]{12})|(3[47][0-9]{13})|(3(?:0[0-5]|[68][0-9])[0-9]{11})|((?:2131|1800|35[0-9]{3})[0-9]{11}))$/.test(cardValue);
+            // regex from: https://www.w3resource.com/javascript-exercises/javascript-regexp-exercise-2.php
+
            if (cardIsValid !== true) {
-             e.preventDefault; 
-           }
+            e.preventDefault();
+            cardInput.parentElement.classList.add('not-valid');
+            cardInput.parentElement.classList.remove('valid');
+
+          } else {
+            cardInput.parentElement.classList.add('valid');
+              cardInput.parentElement.classList.remove('not-valid');
+              cardInput.parentElement.lastElementChild.hidden = true;
+          }
 
 
           // zip validation 
-          const zipValue = zipInput.value;
-          const zipIsValid = '^[0-9]{5}(?:-[0-9]{4})?$'.test(zipValue);
-             
+          const zipValue = zipInput.value;             
+          const zipIsValid = /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(zipValue);
+           // regex from: https://stackoverflow.com/a/160583
+
           if (zipIsValid !== true) {
-            e.preventDefault;
+            e.preventDefault();
+            zipInput.parentElement.classList.add('not-valid');
+            zipInput.parentElement.classList.remove('valid');
+
+          } else {
+            zipInput.parentElement.classList.add('valid');
+              zipInput.parentElement.classList.remove('not-valid');
+              zipInput.parentElement.lastElementChild.hidden = true;
           }
 
 
           // cvv validation
           const cvvValue = cvvInput.value;
-          const cvvIsValid = '^[0-9]{3, 4}$'.test(cvvValue);
+          const cvvIsValid = /^[0-9]{3}$/gm.test(cvvValue);
+         // regex from: https://www.debugpointer.com/regex/regex-for-cvv-code
            
          if (cvvIsValid !== true) {
-           e.preventDefault;
-         }
+          e.preventDefault();
+          cvvInput.parentElement.classList.add('not-valid');
+          cvvInput.parentElement.classList.remove('valid');
+
+
+         } else {
+          cvvInput.parentElement.classList.add('valid');
+            cvvInput.parentElement.classList.remove('not-valid');
+            cvvInput.parentElement.lastElementChild.hidden = true;
+        }
+        
         });
-
-
-       /* const validInput = document.querySelector('.valid')
-        const notvalidInput = document.querySelector('.not-valid')
-        
-        form.addEventListener('submit', (e) => {
-        
-       const nameinputValue = nameInput.value;
-      const regex1 = '^[A-Za-z][A-Za-z0-9_]{7,29}$'.test(nameinputValue);
-        //regex from: https://laasyasettyblog.hashnode.dev/validating-username-using-regex
-
-       if (regex1 === false) {
-        e.preventDefault();
-        nameInput.parentElement.classList.add('notvalidInput'); 
-        nameInput.parentElement.classList.remove('validInput');
-        nameInput.parentElement.lastElementChild.style.display = 'block';
-       } else {
-        nameInput.parentElement.classList.add('validInput'); 
-        nameInput.parentElement.classList.remove('notvalidInput');
-        nameInput.parentElement.lastElementChild.style.display = 'none'; 
-       }
-
-        const emailInputValue = emailInput.value;
-        const regex2 = '/^[^@]+@[^@.]+\.[a-z]+$/i'.test(emailInputValue);
-        
-
-       if (regex2 === false) {
-        e.preventDefault();
-        emailInput.parentElement.classList.add('notvalidInput'); 
-        emailInput.parentElement.classList.remove('validInput');
-        emailInput.parentElement.lastElementChild.style.display = 'block'; 
-       } else {
-        emailInput.parentElement.classList.add('validInput');
-        emailInput.parentElement.classList.remove('notvalidInput');
-        emailInput.parentElement.lastElementChild.style.display = 'none'; 
-       }
-
-        const cardInputValue = cardInput.value;
-        const regex3 = '| 222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}'.test(cardInputValue);
-        //  regex from: https://www.regular-expressions.info/creditcard.html
-
-       if (regex3 === false) {
-        e.preventDefault();
-        cardInput.parentElement.classList.add('notvalidInput'); 
-        cardInput.parentElement.classList.remove('validInput');
-        cardInput.parentElement.lastElementChild.style.display = 'block'; 
-       } else {
-        cardInput.parentElement.classList.add('validInput'); 
-        cardInput.parentElement.classList.remove('notvalidInput');
-        cardInput.parentElement.lastElementChild.style.display = 'none';
-       }
-        
-       const zipInputValue =  zipInput.value;
-       const regex4 = '^[0-9]{5}(?:-[0-9]{4})?$'.test(zipInputValue);
-       // regex from: https://www.oreilly.com/library/view/regular-expressions-cookbook/9781449327453/ch04s14.html#:~:text=You%20need%20to%20validate%20a,123456789%20%2C%20or%201234%2D56789%20.
-
-      if (regex4 === false) {
-       e.preventDefault();
-        zipInput.parentElement.classList.add('notvalidInput');
-         zipInput.parentElement.classList.remove('validInput');
-         zipInput.parentElement.lastElementChild.style.display = 'block'; 
-      } else {
-        zipInput.parentElement.classList.add('validInput'); 
-        zipInput.parentElement.classList.remove('notvalidInput');
-        zipInput.parentElement.lastElementChild.style.display = 'none';
-      }
-
-        const cvvInputValue = cvvInput.value;
-        const regex5 = '^[0-9]{3, 4}$'.test(cvvInputValue);
-        //regex from: https://www.geeksforgeeks.org/how-to-validate-cvv-number-using-regular-expression/
-
-       if (regex5 === false) {
-        e.preventDefault();
-        cvvInput.parentElement.classList.add('notvalidInput');
-        cvvInput.parentElement.classList.remove('validInput');
-        cvvInput.parentElement.lastElementChild.style.display = 'block'
-       } else {
-        cvvInput.parentElement.classList.add('validInput'); 
-        cvvInput.parentElement.classList.remove('notvalidInput');
-        cvvInput.parentElement.lastElementChild.style.display = 'none';
-       }
-      });
-      */
+  
 
 
       // Accessibility - notifies a user when an element is in focus, or if a field is invalid. 
       const checkboxInput = document.querySelectorAll('input [type=checkbox]')
       const focusClass = document.querySelector('.focus');
-      const activitiesBox = document.getElementById('activities-box');
-      const firstLabel = activitiesBox.firstElementChild;
+      //const activitiesBox = document.getElementById('activities-box');
+      //const firstLabel = activitiesBox.firstElementChild;
 
       for (let i = 0 ; i < checkboxInput.length; i++) {
-      checkboxInput.addEventListener('focus', (e) => {
-       firstLabel.classList.add('focusClass'); 
+      checkboxInput[i].addEventListener('focus', (e) => {
+      checkboxInput[i].parentElement.classList.add('focusClass'); 
       });
 
-      checkboxInput.addEventListener('blur', (e) => {
-      firstLabel.classList.remove('focusClass');
+      checkboxInput[i].addEventListener('blur', (e) => {
+      checkboxInput[i].parentElement.classList.remove('focusClass'); 
       })};
 
