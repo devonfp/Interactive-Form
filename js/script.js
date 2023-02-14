@@ -126,15 +126,24 @@ designSelect.addEventListener('change', (e) => {
         
         if (e.target.value === 'paypal') {
          paypalSection.hidden = false;
+
         } else {
           paypalSection.hidden =  true;
+          creditSection.hidden = true;
         }
 
         if (e.target.value === 'bitcoin') {
         bitSection.hidden = false;
+
        } else {
         bitSection.hidden = true;
+        creditSection.hidden = true;
        }
+
+       if (e.target.value === 'credit-card') {
+        creditSection.hidden = false;
+       }
+
       });
         
 
@@ -150,8 +159,10 @@ designSelect.addEventListener('change', (e) => {
         const cardInput = document.getElementById('cc-num');
         const zipInput = document.getElementById('zip');
         const cvvInput = document.getElementById('cvv');
-        
-        const inputField = document.querySelectorAll('input');
+
+        const validationHint = document.getElementsByClassName('hint');
+        console.log(validationHint);
+
 
         form.addEventListener('submit', (e) => {
           //e.preventDefault();
@@ -196,11 +207,10 @@ designSelect.addEventListener('change', (e) => {
 
 
 
-          // card validation
+          // credit-card validation
            const cardValue = cardInput.value;             
-           const cardIsValid = /^(?:(4[0-9]{12}(?:[0-9]{3})?)|(5[1-5][0-9]{14})|(6(?:011|5[0-9]{2})[0-9]{12})|(3[47][0-9]{13})|(3(?:0[0-5]|[68][0-9])[0-9]{11})|((?:2131|1800|35[0-9]{3})[0-9]{11}))$/.test(cardValue);
-            // regex from: https://www.w3resource.com/javascript-exercises/javascript-regexp-exercise-2.php
-
+           const cardIsValid =/(?:\d[ -]*?){13,16}/gm.test(cardValue);
+            // regex from: https://regex101.com/library/hgj2qI
            if (cardIsValid !== true) {
             e.preventDefault();
             cardInput.parentElement.classList.add('not-valid');
@@ -232,6 +242,7 @@ designSelect.addEventListener('change', (e) => {
 
           // cvv validation
           const cvvValue = cvvInput.value;
+
           const cvvIsValid = /^[0-9]{3}$/gm.test(cvvValue);
          // regex from: https://www.debugpointer.com/regex/regex-for-cvv-code
            
@@ -239,12 +250,15 @@ designSelect.addEventListener('change', (e) => {
           e.preventDefault();
           cvvInput.parentElement.classList.add('not-valid');
           cvvInput.parentElement.classList.remove('valid');
-
+          //cvvInput.parentElement.lastElementChild.classList.add('hint')
+          validationHint.style.display = 'block';
 
          } else {
           cvvInput.parentElement.classList.add('valid');
             cvvInput.parentElement.classList.remove('not-valid');
             cvvInput.parentElement.lastElementChild.hidden = true;
+            //cvvInput.parentElement.lastElementChild.classList.remove('hint')
+            validationHint.style.display = 'none';
         }
         
         });
@@ -252,17 +266,17 @@ designSelect.addEventListener('change', (e) => {
 
 
       // Accessibility - notifies a user when an element is in focus, or if a field is invalid. 
-      const checkboxInput = document.querySelectorAll('input [type=checkbox]')
-      const focusClass = document.querySelector('.focus');
-      //const activitiesBox = document.getElementById('activities-box');
-      //const firstLabel = activitiesBox.firstElementChild;
+      const checkboxInput = document.querySelectorAll(" input [type='checkbox'] ");
+      //const inputField = document.querySelectorAll('input')
+      //const inputLabel = document.querySelectorAll('label');
 
       for (let i = 0 ; i < checkboxInput.length; i++) {
       checkboxInput[i].addEventListener('focus', (e) => {
-      checkboxInput[i].parentElement.classList.add('focusClass'); 
+      checkboxInput[i].parentElement.classList.add('focus'); 
       });
 
       checkboxInput[i].addEventListener('blur', (e) => {
-      checkboxInput[i].parentElement.classList.remove('focusClass'); 
-      })};
+      checkboxInput[i].parentElement.classList.remove('focus'); 
+      })};       console.log(checkboxInput);
+
 
