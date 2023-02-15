@@ -160,7 +160,8 @@ designSelect.addEventListener('change', (e) => {
         const zipInput = document.getElementById('zip');
         const cvvInput = document.getElementById('cvv');
 
-        const validationHint = document.getElementsByClassName('hint');
+        const validationHint = document.querySelectorAll('.hint');
+        const labelElement = document.querySelectorAll('label')
         console.log(validationHint);
 
 
@@ -178,10 +179,13 @@ designSelect.addEventListener('change', (e) => {
               e.preventDefault();
               nameInput.parentElement.classList.add('not-valid');
               nameInput.parentElement.classList.remove('valid');
+              labelElement.lastElementChild.validationHint.style.display = 'block';
+
               } else {
                 nameInput.parentElement.classList.add('valid');
                 nameInput.parentElement.classList.remove('not-valid');
                 nameInput.parentElement.lastElementChild.hidden = true;
+                labelElement.lastElementChild.validationHint.style.display = 'none';
 
               } 
 
@@ -197,15 +201,22 @@ designSelect.addEventListener('change', (e) => {
             e.preventDefault();
               emailInput.parentElement.classList.add('not-valid');
               emailInput.parentElement.classList.remove('valid');
+              labelElement.lastElementChild.validationHint.style.display = 'block';
+
 
             } else {
               emailInput.parentElement.classList.add('valid');
                 emailInput.parentElement.classList.remove('not-valid');
                 emailInput.parentElement.lastElementChild.hidden = true;
+                labelElement.lastElementChild.validationHint.style.display = 'none';
             }
 
 
 
+            // activity validation 
+            if (e.target !== checkboxInput) {
+            labelElement.lastElementChild.validationHint.style.display = 'block';
+           }
 
           // credit-card validation
            const cardValue = cardInput.value;             
@@ -215,11 +226,13 @@ designSelect.addEventListener('change', (e) => {
             e.preventDefault();
             cardInput.parentElement.classList.add('not-valid');
             cardInput.parentElement.classList.remove('valid');
+            labelElement.lastElementChild.validationHint.style.display = 'block';
 
           } else {
             cardInput.parentElement.classList.add('valid');
               cardInput.parentElement.classList.remove('not-valid');
               cardInput.parentElement.lastElementChild.hidden = true;
+              labelElement.lastElementChild.validationHint.style.display = 'none';
           }
 
 
@@ -232,11 +245,13 @@ designSelect.addEventListener('change', (e) => {
             e.preventDefault();
             zipInput.parentElement.classList.add('not-valid');
             zipInput.parentElement.classList.remove('valid');
+            labelElement.lastElementChild.validationHint.style.display = 'block';
 
           } else {
             zipInput.parentElement.classList.add('valid');
               zipInput.parentElement.classList.remove('not-valid');
               zipInput.parentElement.lastElementChild.hidden = true;
+              labelElement.lastElementChild.validationHint.style.display = 'none';
           }
 
 
@@ -250,23 +265,21 @@ designSelect.addEventListener('change', (e) => {
           e.preventDefault();
           cvvInput.parentElement.classList.add('not-valid');
           cvvInput.parentElement.classList.remove('valid');
-          //cvvInput.parentElement.lastElementChild.classList.add('hint')
-          validationHint.style.display = 'block';
+          cvvInput.labelElement.lastElementChild.validationHint.style.display = 'block';
 
          } else {
           cvvInput.parentElement.classList.add('valid');
             cvvInput.parentElement.classList.remove('not-valid');
             cvvInput.parentElement.lastElementChild.hidden = true;
-            //cvvInput.parentElement.lastElementChild.classList.remove('hint')
-            validationHint.style.display = 'none';
-        }
+            labelElement.lastElementChild.validationHint.style.display = 'none';
+          }
         
         });
   
 
 
       // Accessibility - notifies a user when an element is in focus, or if a field is invalid. 
-      const checkboxInput = document.querySelectorAll(" input [type='checkbox'] ");
+      const checkboxInput = document.querySelectorAll("[type='checkbox']");
       //const inputField = document.querySelectorAll('input')
       //const inputLabel = document.querySelectorAll('label');
 
