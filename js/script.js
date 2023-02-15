@@ -179,19 +179,17 @@ designSelect.addEventListener('change', (e) => {
               e.preventDefault();
               nameInput.parentElement.classList.add('not-valid');
               nameInput.parentElement.classList.remove('valid');
-              labelElement.lastElementChild.validationHint.style.display = 'block';
+              document.getElementById('name-hint').style.display = 'block';
 
               } else {
                 nameInput.parentElement.classList.add('valid');
                 nameInput.parentElement.classList.remove('not-valid');
                 nameInput.parentElement.lastElementChild.hidden = true;
-                labelElement.lastElementChild.validationHint.style.display = 'none';
-
+                document.getElementById('name-hint').style.display = 'none';
               } 
 
             
 
-      
            // email validation
            const emailValue = emailInput.value;
            const emailIsValid = /^[^@]+@[^@.]+\.[a-z]+$/i.test(emailValue);
@@ -201,22 +199,28 @@ designSelect.addEventListener('change', (e) => {
             e.preventDefault();
               emailInput.parentElement.classList.add('not-valid');
               emailInput.parentElement.classList.remove('valid');
-              labelElement.lastElementChild.validationHint.style.display = 'block';
-
+              document.getElementById('email-hint').style.display = 'block';
 
             } else {
               emailInput.parentElement.classList.add('valid');
                 emailInput.parentElement.classList.remove('not-valid');
                 emailInput.parentElement.lastElementChild.hidden = true;
-                labelElement.lastElementChild.validationHint.style.display = 'none';
-            }
+                document.getElementById('email-hint').style.display = 'none';
+
+              }
 
 
 
             // activity validation 
             if (e.target !== checkboxInput) {
-            labelElement.lastElementChild.validationHint.style.display = 'block';
-           }
+              e.preventDefault();
+              document.getElementById('activities-hint').style.display = 'block';
+              console.log(checkboxInput)
+            } else {
+              document.getElementById('activities-hint').style.display = 'none';
+            }
+
+     
 
           // credit-card validation
            const cardValue = cardInput.value;             
@@ -226,14 +230,15 @@ designSelect.addEventListener('change', (e) => {
             e.preventDefault();
             cardInput.parentElement.classList.add('not-valid');
             cardInput.parentElement.classList.remove('valid');
-            labelElement.lastElementChild.validationHint.style.display = 'block';
+            document.getElementById('cc-hint').style.display = 'block';
 
           } else {
             cardInput.parentElement.classList.add('valid');
               cardInput.parentElement.classList.remove('not-valid');
               cardInput.parentElement.lastElementChild.hidden = true;
-              labelElement.lastElementChild.validationHint.style.display = 'none';
+              document.getElementById('cc-hint').style.display = 'none';
           }
+
 
 
           // zip validation 
@@ -245,14 +250,15 @@ designSelect.addEventListener('change', (e) => {
             e.preventDefault();
             zipInput.parentElement.classList.add('not-valid');
             zipInput.parentElement.classList.remove('valid');
-            labelElement.lastElementChild.validationHint.style.display = 'block';
+            document.getElementById('zip-hint').style.display = 'block';
 
           } else {
             zipInput.parentElement.classList.add('valid');
               zipInput.parentElement.classList.remove('not-valid');
               zipInput.parentElement.lastElementChild.hidden = true;
-              labelElement.lastElementChild.validationHint.style.display = 'none';
+              document.getElementById('zip-hint').style.display = 'none';
           }
+
 
 
           // cvv validation
@@ -265,13 +271,13 @@ designSelect.addEventListener('change', (e) => {
           e.preventDefault();
           cvvInput.parentElement.classList.add('not-valid');
           cvvInput.parentElement.classList.remove('valid');
-          cvvInput.labelElement.lastElementChild.validationHint.style.display = 'block';
+          document.getElementById('cvv-hint').style.display = 'block';
 
          } else {
           cvvInput.parentElement.classList.add('valid');
             cvvInput.parentElement.classList.remove('not-valid');
             cvvInput.parentElement.lastElementChild.hidden = true;
-            labelElement.lastElementChild.validationHint.style.display = 'none';
+            document.getElementById('cvv-hint').style.display = 'none';
           }
         
         });
