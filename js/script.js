@@ -43,7 +43,7 @@ colorSelect.disabled = true;
 designSelect.addEventListener('change', (e) => {
     
     colorSelect.disabled = false;
-    console.log(e.target.value);
+    //console.log(e.target.value);
 
     
     
@@ -93,7 +93,7 @@ designSelect.addEventListener('change', (e) => {
         
         activities.addEventListener('change', (e) => {
           let dataCost = parseInt(e.target.getAttribute( 'data-cost' )); 
-           console.log(dataCost);
+           //console.log(dataCost);
           
            if (e.target.checked) {
            totalCost += dataCost;
@@ -160,9 +160,9 @@ designSelect.addEventListener('change', (e) => {
         const zipInput = document.getElementById('zip');
         const cvvInput = document.getElementById('cvv');
 
-        const validationHint = document.querySelectorAll('.hint');
-        const labelElement = document.querySelectorAll('label')
-        console.log(validationHint);
+        //const validationHint = document.querySelectorAll('.hint');
+        //const labelElement = document.querySelectorAll('label')
+        //console.log(validationHint);
 
 
         form.addEventListener('submit', (e) => {
@@ -211,15 +211,21 @@ designSelect.addEventListener('change', (e) => {
 
 
 
-            // activity validation 
-            if (e.target !== checkboxInput) {
+            // activity validation
+           
+            //if (e.target.checkboxInput === true) {
+
+          const activityCheckbox = document.getElementById('activities-box');
+
+
+            if (activityCheckbox.checked !== true) {
               e.preventDefault();
               document.getElementById('activities-hint').style.display = 'block';
-              console.log(checkboxInput)
+
             } else {
               document.getElementById('activities-hint').style.display = 'none';
-            }
-
+            } console.log(activityCheckbox.checked)
+   
      
 
           // credit-card validation
@@ -296,6 +302,6 @@ designSelect.addEventListener('change', (e) => {
 
       checkboxInput[i].addEventListener('blur', (e) => {
       checkboxInput[i].parentElement.classList.remove('focus'); 
-      })};       console.log(checkboxInput);
+      })};       //console.log(checkboxInput);
 
 
