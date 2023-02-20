@@ -159,10 +159,6 @@ designSelect.addEventListener('change', (e) => {
         const zipInput = document.getElementById('zip');
         const cvvInput = document.getElementById('cvv');
 
-        //const validationHint = document.querySelectorAll('.hint');
-        //const labelElement = document.querySelectorAll('label')
-        //console.log(validationHint);
-
 
         form.addEventListener('submit', (e) => {
           //e.preventDefault();
@@ -191,8 +187,8 @@ designSelect.addEventListener('change', (e) => {
 
            // email validation
            const emailValue = emailInput.value;
-           const emailIsValid = /^[^@]+@[^@.]+\.[a-z]+$/i.test(emailValue);
-            // regex from: 
+           const emailIsValid = /^\S+@\S+\.\S+$/.test(emailValue);
+            // regex from: https://uibakery.io/regex-library/email
              
             if (emailIsValid !== true) {
             e.preventDefault();
