@@ -9,7 +9,6 @@ const name = input.focus();
 const roleSelect = document.getElementById('title');
 const roleInput = document.getElementById('other-job-role');
 
-
  roleInput.style.display = 'none';
 
 roleSelect.addEventListener('change', (e) => {
@@ -212,19 +211,14 @@ designSelect.addEventListener('change', (e) => {
 
 
             // activity validation
-           
-            //if (e.target.checkboxInput === true) {
-
-          const activityCheckbox = document.getElementById('activities-box');
-
-
-            if (activityCheckbox.checked !== true) {
+          const activityCheckbox = document.querySelectorAll('#activities-box [type="checkbox"]:checked')
+            if (activityCheckbox.length === 0) {
               e.preventDefault();
               document.getElementById('activities-hint').style.display = 'block';
 
             } else {
               document.getElementById('activities-hint').style.display = 'none';
-            } console.log(activityCheckbox.checked)
+            } //console.log(activityCheckbox.checked)
    
      
 
@@ -292,8 +286,6 @@ designSelect.addEventListener('change', (e) => {
 
       // Accessibility - notifies a user when an element is in focus, or if a field is invalid. 
       const checkboxInput = document.querySelectorAll("[type='checkbox']");
-      //const inputField = document.querySelectorAll('input')
-      //const inputLabel = document.querySelectorAll('label');
 
       for (let i = 0 ; i < checkboxInput.length; i++) {
       checkboxInput[i].addEventListener('focus', (e) => {
