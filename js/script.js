@@ -208,20 +208,29 @@ designSelect.addEventListener('change', (e) => {
 
             // activity validation
           const activityCheckbox = document.querySelectorAll('#activities-box [type="checkbox"]:checked')
+          const errorBorder = document.getElementById("activities-box");
+          const regactivityLegend = document.getElementById('regactivity-legend');
+
             if (activityCheckbox.length === 0) {
               e.preventDefault();
               document.getElementById('activities-hint').style.display = 'block';
+              regactivityLegend.style.color = 'red';
+              errorBorder.style.borderColor = 'red';
 
             } else {
               document.getElementById('activities-hint').style.display = 'none';
+              regactivityLegend.style.color = 'initial';
+              errorBorder.style.borderColor = 'transparent';
+
             } //console.log(activityCheckbox.checked)
+            console.log(errorBorder)
    
      
 
           // credit-card validation
            const cardValue = cardInput.value;             
-           const cardIsValid =/(?:\d[ -]*?){13,16}/gm.test(cardValue);
-            // regex from: https://regex101.com/library/hgj2qI
+           const cardIsValid = /^[0-9]{13,16}$/.test(cardValue);
+            // regex from: https://html.com/attributes/input-pattern/
            if (cardIsValid !== true) {
             e.preventDefault();
             cardInput.parentElement.classList.add('not-valid');
